@@ -1,0 +1,137 @@
+#include <stdio.h> 
+#include <string.h> 
+#include <stdlib.h> 
+
+
+#define USUARIO "hola"
+#define CLAVE "mundo"
+#define LONGITUD 80
+
+// Declarar Variables a utilizar y asignación de cada variable
+int saldo_actual = 1000;
+int cantidad;
+void menu();
+void depositar(int cantidad);
+void retirar(int cantidad);
+char ae=130, ai=161, ao=162;
+
+
+ main()
+{
+char usuario[LONGITUD+1];
+char clave[LONGITUD+1];
+do{
+
+printf("\n\t\t\t INICIO DE SESION \n");
+printf("\t\t\t------------------------\n");
+printf("\n\tUSUARIO:");
+gets(usuario);
+printf("\n\t CLAVE: ");
+gets(clave);
+if(strcmp(usuario,USUARIO)==0&&strcmp(clave,CLAVE)==0){
+printf("\n\tBienvenido al sistema\n");
+menu();
+}else{
+	printf("\n\tTu usuario y/o clave son incorrectas\n");
+}
+}while(usuario);
+
+}
+
+
+void menu()
+{
+	
+	
+	int opc;
+	
+      //Funciones de salida de datos en pantalla
+	//Saludo del cajero
+	printf("\n\t\t\t Hola!!");
+	printf("Bienvenido a tu cajero :))\n\n\t");
+	
+	//Agregar estructura do
+	
+	do{
+		
+	//Mostrar Menú
+		printf("\n\n\t",ae);
+
+	printf("\n\n\t ¿En qu%c te puedo ayudar?",ae);
+	 printf("Elige la opci%cn que necesitas\n\n\n\t\t\n",ao);
+	
+	printf("\n1. Consultar saldo");
+	printf("\n2. Depositar");
+	printf("\n3. Retirar");
+	printf("\n4. Salir");
+	
+	// ALMACENAMOS SU OPCION
+	printf("\nDigite su opci%cn: ",ao);
+	scanf("%i" , &opc);
+	
+	//Implementación de estructura de selección SWITCH  que después redirecciona a las funciones 
+	
+	switch(opc)
+	{
+		case 1: printf("\nTu saldo actual es de %i pesos" , saldo_actual); /* Código a ejecutar*/
+		break;
+		
+		case 2:
+		printf("\n Ingresa la cantidad a depositar: "); /* Código a ejecutar*/
+		scanf("%i" , &cantidad); 
+		depositar(cantidad); // 
+		break;
+		
+		case 3:
+		printf("\nIngresa la cantidad de dinero que deseas retirar: "); /* Código a ejecutar*/
+		scanf("%i" , &cantidad); 
+		retirar(cantidad); 
+		break;
+		
+		case 4:
+		break; 
+		default:
+			printf("\nOpci%cn no valida",ao);
+		break; 
+
+
+	}
+
+	
+}while(opc < 4);
+	
+	//Nuestro Mensaje de Despedida
+		printf("\n\t\tGracias por haberme utilizado.");
+		printf("\n\t\t\tQue tengas un buen d%ca.\n",ai);
+		
+}
+
+// Utilizar funciones similares a la práctica 11
+//Declarar variables a utilizar 
+void depositar(int cantidad)
+{
+	//Mostrar tu saldo disponible(actual)
+	saldo_actual += cantidad; 
+	printf("\nHas depositado exitosamente %i pesos, tu saldo actual es de %i pesos" , cantidad , saldo_actual ); /* Código a ejecutar*/
+	
+}
+
+// Para retirar tu dinero
+void retirar(int cantidad)
+{
+	// Implementación de estructura condicional If
+	if (cantidad <= saldo_actual)
+	{
+	
+	saldo_actual -= cantidad;
+	
+	printf("\nHas retirado exitosamente %i pesos, tu saldo actual es de %i pesos" , cantidad , saldo_actual ); /* Código a ejecutar*/
+	
+	}
+	else
+	{
+		printf("\nNo tienes suficiente dinero, tu saldo actual es de %i", saldo_actual);    /* Código a ejecutar*/
+	}
+	
+
+}
